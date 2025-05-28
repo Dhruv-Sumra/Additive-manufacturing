@@ -14,12 +14,12 @@ const Payment = () => {
   const handleProceedToPay = () => {
     if (selectedTier) {
       setShowPaymentMethods(true);
-      setActiveStep(2); 
+      setActiveStep(2);
     }
   };
 
   return (
-    <div className="px-5 mt-15 md:px-15 w-full h-auto space-x-3">
+    <div id="payment" className="px-5 mt-15 md:px-15 w-full h-auto space-x-3">
       <div className="w-full">
         <h2 className="text-xl md:text-3xl font-semibold">
           Secure your membership
@@ -47,7 +47,6 @@ const Payment = () => {
               className="bg-white w-5 h-5 md:w-8 md:h-8 appearance-none border-2 border-gray-500 rounded-full checked:bg-blue-500 checked:border-blue-500"
             />
           </div>
-
           <div className="flex justify-between mb-10 w-8/10 md:w-7/10 text-sm md:text-xl mx-auto">
             <p>Submit</p>
             <p>Payment</p>
@@ -60,66 +59,86 @@ const Payment = () => {
         <div className="md:px-40 flex flex-col md:flex-row justify-between">
           <div className="w-full md:w-2/5 h-auto p-4 rounded-lg bg-blue-100">
             <h2 className="text-lg font-semibold">Payment details</h2>
-            <div className="w-full space-x-5 mt-2 space-y-2 flex flex-col justify-between">
-              <div className="flex flex-col md:flex-row text-sm md:text-lg justify-between">
-                <label>Full name</label>
+            <div className="w-full space-y-4 mt-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <label className="text-sm md:text-lg text-gray-700 min-w-[120px]">
+                  Full name
+                </label>
                 <input
                   required
                   type="text"
-                  className="w-3/4 md:w-full bg-white rounded-sm px-2"
+                  className="w-full md:w-3/4 bg-white rounded-sm px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   title="Enter full name"
+                  placeholder="Enter your full name"
                 />
               </div>
-              <div className="flex flex-col md:flex-row text-sm md:text-lg justify-between">
-                <label>Email</label>
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <label className="text-sm md:text-lg text-gray-700 min-w-[120px]">
+                  Email
+                </label>
                 <input
                   required
                   type="email"
-                  className="w-3/4 md:w-full bg-white rounded-sm px-2"
+                  className="w-full md:w-3/4 bg-white rounded-sm px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   title="Enter your email"
+                  placeholder="Enter your email"
                 />
               </div>
-              <div className="flex flex-col md:flex-row text-sm md:text-lg justify-between">
-                <label>Phone no</label>
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <label className="text-sm md:text-lg text-gray-700 min-w-[120px]">
+                  Phone no
+                </label>
                 <input
                   required
                   type="text"
-                  className="bg-white w-3/4 md:w-full rounded-sm px-2"
+                  className="w-full md:w-3/4 bg-white rounded-sm px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   pattern="[0-9]{10}"
                   inputMode="numeric"
                   maxLength="10"
                   title="Enter mobile no."
+                  placeholder="Enter 10-digit number"
                 />
               </div>
             </div>
 
             <h2 className="text-lg font-semibold mt-5">Professional details</h2>
-            <div className="w-full space-x-5 mt-2 space-y-2 flex flex-col justify-between">
-              <div className="flex flex-col md:flex-row text-sm md:text-lg justify-between">
-                <label>Organization</label>
+            <div className="w-full space-y-4 mt-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <label className="text-sm md:text-lg text-gray-700 min-w-[120px]">
+                  Organization
+                </label>
                 <input
                   required
                   type="text"
-                  className="bg-white w-3/4 md:w-full rounded-sm px-2"
+                  className="bg-white w-full md:w-3/4 rounded-sm px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   title="Organization"
+                  placeholder="Enter your organization"
                 />
               </div>
-              <div className="flex flex-col md:flex-row text-sm md:text-lg justify-between">
-                <label>Designation</label>
+
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <label className="text-sm md:text-lg text-gray-700 min-w-[120px]">
+                  Designation
+                </label>
                 <input
                   required
                   type="text"
-                  className="bg-white w-3/4 md:w-full rounded-sm px-2"
+                  className="bg-white w-full md:w-3/4 rounded-sm px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   title="Designation"
+                  placeholder="Enter your designation"
                 />
               </div>
-              <div className="flex flex-col md:flex-row text-sm md:text-lg justify-between">
-                <label>UID (if student)</label>
+
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <label className="text-sm md:text-lg text-gray-700 min-w-[120px]">
+                  UID (if student)
+                </label>
                 <input
                   required
                   type="text"
-                  className="bg-white w-3/4 md:w-full rounded-sm px-2"
-                  title="Phone no"
+                  className="bg-white w-full md:w-3/4 rounded-sm px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  title="UID"
+                  placeholder="Enter your UID"
                 />
               </div>
             </div>
@@ -152,25 +171,32 @@ const Payment = () => {
                 <div className="mt-5 md:text-md text-xs min-w-65 md:w-90 space-y-2">
                   <div className="flex  flex-start w-full relative">
                     <p className=" mr-3">{selectedTier.type}</p>
-                
-                    <p className="font-medium">({selectedTier.time_period}) : </p>
+                    <p className="font-medium">
+                      ({selectedTier.time_period}) :{" "}
+                    </p>
                     &nbsp;
-                    <p className="md:ml-10 absolute right-0">₹{selectedTier.price}/-</p>
-                  </div>    
+                    <p className="md:ml-10 absolute right-0">
+                      ₹{selectedTier.price}/-
+                    </p>
+                  </div>
 
                   <div className="flex md:flex-start w-full relative ">
                     <p className="mr-3">GST</p>
-                
-                    <p className="font-medium">(18%) : </p>
-        
-                    <p className="absolute right-0 md:ml-0">₹{selectedTier.price*18/100}/-</p>
-                  </div>    
 
-                  <hr className="border-1 w-full mx-auto"/>
+                    <p className="font-medium">(18%) : </p>
+
+                    <p className="absolute right-0 md:ml-0">
+                      ₹{(selectedTier.price * 18) / 100}/-
+                    </p>
+                  </div>
+
+                  <hr className="border-1 w-full mx-auto" />
 
                   <div className="relative">
                     <p>Total : </p>
-                    <p className="text-md md:ml-10 absolute right-0 top-0">₹{selectedTier.price + (selectedTier.price*(18/100))}/-</p>
+                    <p className="text-md md:ml-10 absolute right-0 top-0">
+                      ₹{selectedTier.price + selectedTier.price * (18 / 100)}/-
+                    </p>
                   </div>
                 </div>
               ) : (
@@ -179,12 +205,12 @@ const Payment = () => {
                 </p>
               )}
 
-              <button 
+              <button
                 onClick={handleProceedToPay}
                 disabled={!selectedTier}
                 className={`mt-6 text-white px-2 py-1 rounded-lg tracking-wide ${
-                  selectedTier 
-                    ? "bg-blue-500 hover:bg-blue-600 cursor-pointer" 
+                  selectedTier
+                    ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
               >
@@ -196,14 +222,23 @@ const Payment = () => {
       ) : (
         <div className="md:px-40 flex justify-center">
           <div className="md:w-3/4 p-8 rounded-lg bg-blue-200">
-            <h2 className="text-xl md:text-2xl font-semibold mb-6">Payment Methods</h2>
-            
+            <h2 className="text-xl md:text-2xl font-semibold mb-6">
+              Payment Methods
+            </h2>
+
             <div className="space-y-4">
               <div className="flex items-center p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-blue-50">
-                <input defaultChecked type="radio" name="payment" className="mr-4 h-5 w-5" />
+                <input
+                  defaultChecked
+                  type="radio"
+                  name="payment"
+                  className="mr-4 h-5 w-5"
+                />
                 <div className="flex-1">
                   <h3 className="font-medium md:text-lg">Credit/Debit Card</h3>
-                  <p className="text-xs md:text-md text-gray-600">Pay with Visa, Mastercard, etc.</p>
+                  <p className="text-xs md:text-md text-gray-600">
+                    Pay with Visa, Mastercard, etc.
+                  </p>
                   <div className="mt-3 grid grid-cols-4 text-xs gap-2">
                     <div className="h-8 bg-gray-100 rounded flex items-center justify-center">
                       <span className="text-xs">VISA</span>
@@ -220,12 +255,14 @@ const Payment = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex items-center p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-blue-50">
                 <input type="radio" name="payment" className="mr-4 h-5 w-5" />
                 <div>
                   <h3 className="font-medium md:text-lg">UPI Payment</h3>
-                  <p className="text-xs md:text-md text-gray-600">Pay using any UPI app</p>
+                  <p className="text-xs md:text-md text-gray-600">
+                    Pay using any UPI app
+                  </p>
                   <div className="mt-3 grid grid-cols-4 gap-2">
                     <div className="h-8 bg-gray-100 rounded flex items-center justify-center">
                       <span className="text-xs">GPay</span>
@@ -242,7 +279,7 @@ const Payment = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex items-center p-4 bg-white rounded-lg shadow cursor-pointer hover:bg-blue-50">
                 <input type="radio" name="payment" className="mr-4 h-5 w-5" />
                 <div>
@@ -258,18 +295,18 @@ const Payment = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-8 flex justify-between items-center">
-              <button 
+              <button
                 onClick={() => {
                   setShowPaymentMethods(false);
                   setActiveStep(1);
                 }}
                 className="text-xs md:text-md text-blue-600  cursor-pointer hover:text-blue-800 font-medium"
               >
-               Back to order details
+                Back to order details
               </button>
-              <button 
+              <button
                 onClick={() => setActiveStep(3)}
                 className="text-xs cursor-pointer bg-blue-500 hover:bg-blue-600 text-white md:px-6 px-2 py-2 rounded-lg md:text-lg"
               >

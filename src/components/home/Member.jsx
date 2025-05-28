@@ -35,7 +35,7 @@ const Member = () => {
       </div>
 
       <div className="flex justify-center mt-10">
-      <a href=""><button className="text-white bg-blue-500 hover:bg-blue-600 py-2 cursor-pointer px-3 md:px-5 rounded-lg tracking-wide md:text-2xl">Become a Member</button></a>
+      <a href="/membership#payment"><button className="text-white bg-blue-500 hover:bg-blue-600 py-2 cursor-pointer px-3 md:px-5 rounded-lg tracking-wide md:text-2xl">Become a Member</button></a>
       </div>    
     </div>
   );

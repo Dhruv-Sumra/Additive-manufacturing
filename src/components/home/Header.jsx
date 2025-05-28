@@ -45,7 +45,7 @@ const Header = () => {
           <img
             src={logo}
             alt="ISAMC Logo"
-            className="scale-110 md:scale-100 object-cover w-30 h-full md:h-20 md:w-full"
+            className="scale-110 md:scale-110 object-cover w-40 h-full md:h-30 md:w-full"
           /></a>
           {/* <div>
             <h1 className="text-2xl font-bold text-gray-800">ISAMC</h1>

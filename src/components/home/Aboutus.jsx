@@ -22,7 +22,7 @@ const Aboutus = () => {
           of manufacturing and material sciences in India.
         </p>
 
-        <a href="#">
+        <a href="/about">
           <button className="mt-5 transi text-white bg-blue-500 hover:bg-blue-600 py-1 md:py-2 cursor-pointer px-3 md:px-5 rounded-lg tracking-wide md:text-2xl text-xl">
             Read more
           </button>
