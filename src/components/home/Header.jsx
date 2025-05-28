@@ -41,11 +41,12 @@ const Header = () => {
     >
       <div className="max-w-[90vw] mx-auto flex items-center justify-between p-4 h-20">
         <div className="flex items-center space-x-2 overflow-hidden bg-transparent w-80 h-18">
+          <a href="/">
           <img
             src={logo}
             alt="ISAMC Logo"
             className="scale-110 md:scale-100 object-cover w-30 h-full md:h-20 md:w-full"
-          />
+          /></a>
           {/* <div>
             <h1 className="text-2xl font-bold text-gray-800">ISAMC</h1>
             <p className="max-w-80 text-xs md:text-lg text-gray-500">
@@ -138,11 +139,13 @@ const Header = () => {
   }`}
         >
           <div className="w-full h-20 mt-2">
+
+            <a href="/">
             <img
               src={logo}
               alt="ISAMC Logo"
               className="h-full object-cover w-50"
-            />
+            /></a>
           </div>
 
           <div className="md:hidden px-4 pb-4 space-y-2 flex flex-col">

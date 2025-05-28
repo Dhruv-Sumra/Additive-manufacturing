@@ -7,7 +7,9 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="space-y-3">
           <div className="flex flex-start space-x-2 items-center">
-            <img className="h-10" src={logo} alt="logo" />
+            <a href="/">
+              <img className="h-10" src={logo} alt="logo" />
+            </a>
             <h2 className="text-2xl font-bold">ISAMC</h2>
           </div>
 
@@ -125,7 +127,6 @@ const Footer = () => {
           >
             Terms of use
           </a>
-
         </div>
 
         <p className="text-sm md:text-semibold md:hidden mt-2">
