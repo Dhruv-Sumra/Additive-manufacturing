@@ -5,7 +5,7 @@ import Mission from '../components/about/Mission'
 import Leadership from '../components/about/Leadership'
 import Partners from '../components/about/Partners'
 import CTA from '../components/about/CTA'
-import Footer from '../components/Home/Footer'
+import Footer from '../components/home/Footer'
 
 const About = () => {
   return (

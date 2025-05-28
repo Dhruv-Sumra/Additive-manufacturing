@@ -47,14 +47,6 @@ const Header = () => {
             alt="ISAMC Logo"
             className="scale-110 md:scale-110 object-cover w-40 h-full md:h-30 md:w-full"
           /></a>
-          {/* <div>
-            <h1 className="text-2xl font-bold text-gray-800">ISAMC</h1>
-            <p className="max-w-80 text-xs md:text-lg text-gray-500">
-              {language === "EN"
-                ? "Indian Society of Additive Manufacturing and Characterization"
-                : "भारतीय समाज योज्य विनिर्माण और विशेषता"}
-            </p>
-          </div> */}
         </div>
 
         <nav

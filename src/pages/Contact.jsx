@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from '../components/contact/Hero'
 import ContactSection from '../components/contact/ContactSection'
-import Footer from '../components/Home/Footer'
+import Footer from '../components/home/Footer'
 
 const Contact = () => {
   return (
