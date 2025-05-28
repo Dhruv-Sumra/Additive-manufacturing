@@ -37,25 +37,25 @@ const Footer = () => {
           <h2 className="text-2xl font-bold">Quick Links</h2>
 
           <div className="flex flex-col px-3 text-blue-500 font-medium space-y-1 mt-3">
-            <a href="" className="hover:text-blue-600">
+            <a href="/" className="hover:text-blue-600">
               Home
             </a>
-            <a href="" className="hover:text-blue-600">
+            <a href="about" className="hover:text-blue-600">
               About us
             </a>
-            <a href="" className="hover:text-blue-600">
+            <a href="membership" className="hover:text-blue-600">
               Membership
             </a>
-            <a href="" className="hover:text-blue-600">
+            <a href="events" className="hover:text-blue-600">
               Events
             </a>
-            <a href="" className="hover:text-blue-600">
+            <a href="publications" className="hover:text-blue-600">
               Publications
             </a>
-            <a href="" className="hover:text-blue-600">
+            <a href="resources" className="hover:text-blue-600">
               Resources
             </a>
-            <a href="" className="hover:text-blue-600">
+            <a href="contact" className="hover:text-blue-600">
               Contact us
             </a>
           </div>
