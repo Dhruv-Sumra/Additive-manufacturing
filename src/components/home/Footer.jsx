@@ -39,27 +39,35 @@ const Footer = () => {
           <h2 className="text-2xl font-bold">Quick Links</h2>
 
           <div className="flex flex-col px-3 text-blue-500 font-medium space-y-1 mt-3">
-            <a href="/" className="hover:text-blue-600">
+            <NavLink to="/" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               Home
-            </a>
-            <a href="about" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/about" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               About us
-            </a>
-            <a href="membership" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/membership" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               Membership
-            </a>
-            <a href="events" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/events" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               Events
-            </a>
-            <a href="publications" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/publications" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               Publications
-            </a>
-            <a href="resources" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/resources" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               Resources
-            </a>
-            <a href="contact" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/contact" className={({ isActive }) =>
+          `${isActive ? "text-blue-500" : "text-blue-600"} block hover:text-blue-600`}>
               Contact us
-            </a>
+            </NavLink>
+
           </div>
         </div>
 
