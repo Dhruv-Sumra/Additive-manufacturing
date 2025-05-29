@@ -35,12 +35,12 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all ${
+      className={`fixed top-0  w-full z-50 transition-all  ${
         isScrolled ? "bg-gray-200 shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="px-15 max-w[auto] mx-auto flex items-center justify-between h-20">
-        <div className="flex items-center space-x-2 overflow-hidden bg-transparent w-80 h-18">
+      <div className="px-5 md:px-15 min-w-screen flex items-center justify-between h-20">
+        <div className="flex justify-between items-center space-x-2 overflow-hidden bg-transparent w-80 h-18">
           <a href="/">
           <img
             src={logo}
@@ -50,7 +50,7 @@ const Header = () => {
         </div>
 
         <nav
-         className={`hidden lg:flex space-x-6 text-xl min-w-[500px] justify-between ${
+         className={`hidden lg:flex space-x-6 text-xl min-w-[full]  justify-between ${
     isScrolled ? "text-black" : location.pathname === "/" ? "text-white" : "text-black"}
   }`}
 
@@ -127,12 +127,12 @@ const Header = () => {
         
         <div
         ref={menuRef}
-          className={`z-100 bg-blue-100 md:hidden opacity-90 fixed top-0 right-0 w-2/3 h-auto py-5 
+          className={` z-100 bg-blue-100 md:hidden opacity-90 fixed top-0 right-0 w-2/3 h-auto py-5 
   transition-all duration-300 rounded-bl-sm  ${
     isOpen ? "translate-x-0" : "translate-x-full"
   }`}
         >
-          <div className="w-full h-20 mt-2 md:hidden">
+          <div className="w-full h-20 mt-2 border-2 md:hidden">
 
             <a href="/">
             <img
