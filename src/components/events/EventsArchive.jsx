@@ -1,23 +1,41 @@
-import React, { useState , useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import data from "../../data/db.json";
 
 const EventsArchive = () => {
-  const [archives , setArchives] = useState([])
+  const [archives, setArchives] = useState([]);
 
   useEffect(() => {
     setArchives(data.eventsArchives);
   }, []);
 
   return (
-    <div className="w-full h-auto py-10 mt-10 md:px-15 px-5">
-      <h2 className="text-center text-2xl md:text-4xl font-bold ">
+    <motion.div
+      className="w-full h-auto py-10 mt-10 md:px-15 px-5"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
+      <motion.h2
+        className="text-center text-2xl md:text-4xl font-bold"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      >
         Past events archive
-      </h2>
+      </motion.h2>
 
       <div className="flex flex-col md:flex-row justify-between h-auto md:h-90 gap-20 mt-6">
-        <div className="w-full md:w-1/3 h-full p-4">
+        <motion.div
+          className="w-full md:w-1/3 h-full p-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+        >
           <h2 className="md:text-2xl font-medium">Events and shows</h2>
-
           <p className="mt-3">
             From dynamic conferences to engaging workshops, ISAMC’s events and
             shows bring together experts, enthusiasts, and pioneers to explore
@@ -25,33 +43,43 @@ const EventsArchive = () => {
             with cutting-edge discussions, interactive sessions, and exclusive
             showcases that shape the future.
           </p>
-
-          <a href="#">
+          <motion.a href="#" whileHover={{ scale: 1.05 }}>
             <button className="max-w-auto mt-6 transi text-white bg-blue-500 hover:bg-blue-600 py-1 md:py-1 cursor-pointer px-2 rounded-lg tracking-wide text-sm md:text-lg">
               Join upcoming events
             </button>
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        <div className=" md:p-4 flex flex-col gap-5 md:bg-blue-100 w-full md:w-2/3 h-full ">
-          {archives.map((item , index)=>(
-            <div key={index} className="w-full md:gap-7 h-auto md:h-25 rounded-sm bg-blue-50 p-2 md:p-1 flex justify-between">
-                <div className="w-1/5 bg-blue-300 rounded-sm h-27 md:h-22 flex flex-col items-center justify-center">
-                    <p className=" md:text-3xl font-semibold">{item.date.day}</p>
-                    <p className="text-xs md:text-lg">{item.date.month}</p>
-                </div>
+        <div className="md:p-4 flex flex-col gap-5 md:bg-blue-100 w-full md:w-2/3 h-full">
+          {archives.map((item, index) => (
+            <motion.div
+              key={index}
+              className="w-full md:gap-7 h-auto md:h-25 rounded-sm bg-blue-50 p-2 md:p-1 flex justify-between"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeOut", delay: index * 0.2 }}
+            >
+              <motion.div
+                className="w-1/5 bg-blue-300 rounded-sm h-27 md:h-22 flex flex-col items-center justify-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+              >
+                <p className="md:text-3xl font-semibold">{item.date.day}</p>
+                <p className="text-xs md:text-lg">{item.date.month}</p>
+              </motion.div>
 
-                <div className="w-5/6 md:w-4/5 rounded-sm h-full px-4">
-                    <p className="text-sm md:text-lg font-semibold">{item.title}</p>
-                    <p className="text-xs md:text-lg">{item.body}</p>
-                </div>
-
-            </div>
+              <div className="w-5/6 md:w-4/5 rounded-sm h-full px-4">
+                <p className="text-sm md:text-lg font-semibold">{item.title}</p>
+                <p className="text-xs md:text-lg">{item.body}</p>
+              </div>
+            </motion.div>
           ))}
-          
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

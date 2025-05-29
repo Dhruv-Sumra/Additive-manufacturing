@@ -39,7 +39,7 @@ const Header = () => {
         isScrolled ? "bg-gray-200 shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-[90vw] mx-auto flex items-center justify-between p-4 h-20">
+      <div className="px-15 max-w[auto] mx-auto flex items-center justify-between h-20">
         <div className="flex items-center space-x-2 overflow-hidden bg-transparent w-80 h-18">
           <a href="/">
           <img
@@ -111,6 +111,8 @@ const Header = () => {
             Login
           </Link>
         </div>
+
+
         <button
           onClick={toggleMenu}
           className={`md:hidden z-110 text-blue-500 cursor-pointer transform transition-transform duration-300 ${
@@ -130,7 +132,7 @@ const Header = () => {
     isOpen ? "translate-x-0" : "translate-x-full"
   }`}
         >
-          <div className="w-full h-20 mt-2">
+          <div className="w-full h-20 mt-2 md:hidden">
 
             <a href="/">
             <img

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
+    "framer-motion": "^12.15.0",
+    "gsap": "^3.13.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",
     "mapbox-gl": "^3.12.0",

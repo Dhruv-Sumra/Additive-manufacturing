@@ -3,7 +3,7 @@ import Hero from '../components/about/Hero'
 import Info from '../components/about/Info'
 import Mission from '../components/about/Mission'
 import Leadership from '../components/about/Leadership'
-import Partners from '../components/about/Partners'
+import Partners from '../components/home/Partners'
 import CTA from '../components/about/CTA'
 import Footer from '../components/home/Footer'
 
