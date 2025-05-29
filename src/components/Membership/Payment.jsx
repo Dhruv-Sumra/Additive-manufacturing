@@ -17,9 +17,10 @@ const Payment = () => {
       setActiveStep(2);
     }
   };
+  
 
   return (
-    <div id="payment" className="px-5 mt-15 md:px-15 w-full h-auto space-x-3">
+    <div id="payment-section" className="px-5 mt-15 md:px-15 w-full h-auto space-x-3">
       <div className="w-full">
         <h2 className="text-xl md:text-3xl font-semibold">
           Secure your membership
