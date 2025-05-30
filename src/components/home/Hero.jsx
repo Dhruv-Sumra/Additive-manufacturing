@@ -13,7 +13,6 @@ const Hero = () => {
 
   return (
     <div className="w-full h-[90vh] relative overflow-hidden">
-      {/* Background Image with Scaling Animation */}
       <motion.div
         className="absolute h-[80vh] inset-0"
         initial={{ scale: 1.2 }}
@@ -25,7 +24,6 @@ const Hero = () => {
           src={poster}
           alt="Poster of Home page"
         />
-        {/* Background Overlay */}
         <motion.div
           className="absolute inset-0 bg-black opacity-40"
           initial={{ opacity: 0 }}
@@ -34,7 +32,6 @@ const Hero = () => {
         />
       </motion.div>
 
-      {/* Hero Content */}
       <motion.div
         className="relative z-10 flex flex-col items-start py-40 h-screen px-5 md:px-15"
         initial={{ opacity: 0, y: 50 }}
@@ -50,7 +47,6 @@ const Hero = () => {
           Advancing Additive Manufacturing and Characterization in India
         </motion.h2>
 
-        {/* Join Now Button */}
         <motion.div
           className="w-full md:block flex justify-center items-center"
           initial={{ y: 30, opacity: 0 }}
