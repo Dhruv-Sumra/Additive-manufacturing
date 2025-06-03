@@ -1,26 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-  });
+  const [fullName , setFullName] = useState("");
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+  const [confirmPassword , setConfirmPassword] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleRegister = async (e)=>{
     e.preventDefault();
-    console.log(formData);
-  };
+    try{
+      const {data} = await axios.post("http://localhost:4000/api/v1/register/send"
+        ,{fullName,email,password,confirmPassword},
+        {
+          headers:{"Content-Type":"application/json"},
+          withCredentials:true
+        }
+      );
+      console.log(data)
+      toast.success(data.message)
+      setFullName(""),
+      setEmail(""),
+      setPassword(""),
+      setConfirmPassword("")
+    }catch(err){
+        toast.error(err)
+    }
+  }
 
   return (
     <div className="max-h-[90vh] md:min-h-screen md:mt-0 mt-20 bg-blue-50 flex items-center justify-center ">
@@ -29,20 +37,17 @@ const Register = () => {
           <h2 className="text-2xl font-semibold text-white">Create Account</h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form className="p-6 space-y-4">
           <div className="space-y-2">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
               Full Name
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              value={fullName}
+              onChange={(e)=>setFullName(e.target.value)}
               placeholder="Enter your full name"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
             />
           </div>
 
@@ -52,13 +57,10 @@ const Register = () => {
             </label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               placeholder="Enter your email"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
             />
           </div>
 
@@ -68,14 +70,10 @@ const Register = () => {
             </label>
             <input
               type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               placeholder="Create a password"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-              minLength="6"
             />
             <p className="text-xs text-gray-500">Minimum 6 characters</p>
           </div>
@@ -86,13 +84,10 @@ const Register = () => {
             </label>
             <input
               type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              value={confirmPassword}
+              onChange={(e)=>setConfirmPassword(e.target.value)}
               placeholder="Confirm your password"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
             />
           </div>
 
@@ -108,8 +103,7 @@ const Register = () => {
             </label>
           </div>
 
-          <button
-            type="submit"
+         <button type="submit" onClick={handleRegister}
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors mt-4"
           >
             Create Account
@@ -117,9 +111,12 @@ const Register = () => {
 
           <div className="text-center text-sm text-gray-600 pt-2">
             Already have an account?{" "}
+
+            
             <Link to="/login" className="text-blue-500 hover:text-blue-700 font-medium">
               Sign in
             </Link>
+          
           </div>
         </form>
       </div>

@@ -3,14 +3,46 @@ import { motion } from "framer-motion";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from "../../data/db.json";
 
-const Mission = () => {
+const FeaturedEvents = () => {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setEvents(data.Events);
+    const fetchEventsData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/v1/db/featured-events");
+        if (!response.ok) {
+          throw new Error("Failed to fetch featured events");
+        }
+        const data = await response.json();
+        setEvents(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEventsData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p>Loading featured events...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p className="text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
 
   const settings = {
     dots: true,
@@ -21,14 +53,8 @@ const Mission = () => {
     arrows: false,
     slidesToScroll: 1,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 640,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -40,8 +66,7 @@ const Mission = () => {
       viewport={{ once: true }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      {/* Section Heading */}
-      <motion.div 
+      <motion.div
         className="text-center mb-6"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +76,6 @@ const Mission = () => {
         <h2 className="text-2xl md:text-4xl font-bold">Featured Events</h2>
       </motion.div>
 
-      {/* Events Slider */}
       <div className="px-5 md:px-10">
         <Slider {...settings}>
           {events.map((item, index) => (
@@ -71,7 +95,7 @@ const Mission = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-                whileHover={{ scale: 1.02  }}
+                whileHover={{ scale: 1.02 }}
               />
 
               <div className="p-4">
@@ -106,4 +130,4 @@ const Mission = () => {
   );
 };
 
-export default Mission;
+export default FeaturedEvents;

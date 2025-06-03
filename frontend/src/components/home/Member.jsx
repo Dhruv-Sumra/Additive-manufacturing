@@ -4,10 +4,44 @@ import data from "../../data/db.json";
 
 const Member = () => {
   const [member, setMember] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setMember(data.Member);
+    const fetchEventsData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/v1/db/member-benefits");
+        if (!response.ok) {
+          throw new Error("Failed to fetch featured events");
+        }
+        const data = await response.json();
+        setMember(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEventsData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p>Loading Members section</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p className="text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
+
 
   return (
     <motion.div

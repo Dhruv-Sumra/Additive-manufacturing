@@ -1,13 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import data from "../../data/db.json";
 
 const Features = () => {
-  const [features, setFeatures] = useState([]);
-
-  useEffect(() => {
-    setFeatures(data.features);
-  }, []);
+     const [features, setFeatures] = useState([]);
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState(null);
+  
+     useEffect(() => {
+         const fetchEventsData = async () => {
+           try {
+             const response = await fetch("http://localhost:4000/api/v1/db/features-benefits");
+             if (!response.ok) {
+               throw new Error("Failed to fetch featured events");
+             }
+             const data = await response.json();
+             setFeatures(data.data);
+           } catch (err) {
+             setError(err.message);
+           } finally {
+             setLoading(false);
+           }
+         };
+     
+         fetchEventsData();
+       }, []);
+     
+       if (loading) {
+         return (
+           <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+             <p>Loading Features and benefits events...</p>
+           </div>
+         );
+       }
+     
+       if (error) {
+         return (
+           <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+             <p className="text-red-500">Error: {error}</p>
+           </div>
+         );
+       }
 
   return (
     <motion.div
@@ -17,7 +49,6 @@ const Features = () => {
       viewport={{ once: true }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      {/* Section Heading */}
       <motion.div
         className="text-center"
         initial={{ opacity: 0, y: 30 }}
@@ -28,7 +59,6 @@ const Features = () => {
         <h2 className="text-4xl font-bold">Features & Benefits</h2>
       </motion.div>
 
-      {/* Feature Cards Grid */}
       <div className="px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
         {features.map((item, index) => (
           <motion.div

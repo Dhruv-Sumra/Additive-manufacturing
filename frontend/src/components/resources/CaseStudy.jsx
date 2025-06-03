@@ -3,14 +3,46 @@ import { motion } from "framer-motion";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from "../../data/db.json";
 
 const CaseStudy = () => {
-  const [caseStudy, setCaseStudy] = useState([]);
-
-  useEffect(() => {
-    setCaseStudy(data.caseStudy);
-  }, []);
+     const [caseStudy, setCaseStudy] = useState([]);
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState(null);
+   
+     useEffect(() => {
+         const fetchEventsData = async () => {
+           try {
+             const response = await fetch("http://localhost:4000/api/v1/db/case-studies");
+             if (!response.ok) {
+               throw new Error("Failed to fetch ");
+             }
+             const data = await response.json();
+             setCaseStudy(data.data);
+           } catch (err) {
+             setError(err.message);
+           } finally {
+             setLoading(false);
+           }
+         };
+     
+         fetchEventsData();
+       }, []);
+  
+       if (loading) {
+         return (
+           <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+             <p>Loading Case studies...</p>
+           </div>
+         );
+       }
+     
+       if (error) {
+         return (
+           <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+             <p className="text-red-500">Error: {error}</p>
+           </div>
+         );
+       }
 
   const settings = {
     dots: true,

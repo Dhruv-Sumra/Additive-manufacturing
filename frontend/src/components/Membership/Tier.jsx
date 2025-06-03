@@ -1,13 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import data from '../../data/db.json';
 
 
 const Leadership = () => {
-  const [tier, setTier] = useState([]);
+ const [tiers, setTiers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-      setTier(data.tier);
+    const fetchEventsData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/v1/db/member-tiers");
+        if (!response.ok) {
+          throw new Error("Failed to fetch featured events");
+        }
+        const data = await response.json();
+        setTiers(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEventsData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p>Loading testimonials...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p className="text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
+
 
 
   return (
@@ -18,7 +51,7 @@ const Leadership = () => {
 
       <div className="px-3 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-6">
    
-        {tier.map((item, index) => (
+        {tiers.map((item, index) => (
             <div key={index} className="card_scale p-4 bg-blue-100  shadow-md rounded-md flex flex-col md:flex-row justify-between items-center text-center">
               <img src={item.img} alt={item.fullName} className="h-20 w-20 md:w-20 md:h-20 drop-shadow-lg object-cover" />
 

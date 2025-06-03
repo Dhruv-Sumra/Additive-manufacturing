@@ -1,13 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import data from "../../data/db.json";
 
 const Cards = () => {
-  const [cards, setCards] = useState([]);
+     const [cards, setCards] = useState([]);
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setCards(data.resourceCards);
-  }, []);
+     useEffect(() => {
+         const fetchEventsData = async () => {
+           try {
+             const response = await fetch("http://localhost:4000/api/v1/db/resources");
+             if (!response.ok) {
+               throw new Error("Failed to fetch ");
+             }
+             const data = await response.json();
+             setCards(data.data);
+           } catch (err) {
+             setError(err.message);
+           } finally {
+             setLoading(false);
+           }
+         };
+     
+         fetchEventsData();
+       }, []);
+  
+       if (loading) {
+         return (
+           <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+             <p>Loading resources...</p>
+           </div>
+         );
+       }
+     
+       if (error) {
+         return (
+           <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+             <p className="text-red-500">Error: {error}</p>
+           </div>
+         );
+       }
 
   return (
     <motion.div

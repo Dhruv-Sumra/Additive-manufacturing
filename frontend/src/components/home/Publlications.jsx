@@ -4,10 +4,44 @@ import data from "../../data/db.json";
 
 const Publications = () => {
   const [publications, setPublications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setPublications(data.Publications);
+    const fetchEventsData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/v1/db/publications");
+        if (!response.ok) {
+          throw new Error("Failed to fetch featured events");
+        }
+        const data = await response.json();
+        setPublications(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEventsData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p>Loading publications...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p className="text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
+
 
   return (
     <motion.div

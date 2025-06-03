@@ -1,13 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import data from "../../data/db.json";
 
 const Mission = () => {
-  const [missions, setMissions] = useState([]);
+const [vision, setVision] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setMissions(data.aboutMission);
+    const fetchEventsData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/v1/db/vision");
+        if (!response.ok) {
+          throw new Error("Failed to fetch featured events");
+        }
+        const data = await response.json();
+        setVision(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEventsData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p>Loading featured events...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-auto mt-10 py-10 flex justify-center items-center">
+        <p className="text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
+
 
   return (
     <motion.div
@@ -28,7 +61,7 @@ const Mission = () => {
       </motion.div>
 
       <div className="px-5 md:px-10 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {missions.map((item, index) => (
+        {vision.map((item, index) => (
           <motion.div
             key={item.id || index}
             className="bg-blue-100 shadow-lg rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300"
